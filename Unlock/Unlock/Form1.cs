@@ -63,12 +63,12 @@ namespace Unlock
             String Sql;
             if (Datacontainer.connectsource == "Data Source=Klingen-su-db,62468; Initial Catalog = Klingen;")
             {
-                Sql = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] Desc) AS RowNumber,[Index],Patient,[Analysis Number] FROM[Klingen].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 +"'";
+                Sql = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] Desc) AS RowNumber,[Index],Patient,[Analysis Number] FROM[Klingen].[dbo].[Analysis Answer] WHERE AnswerDate > " + theDate1 +" AND Answer is Not null";
 
             }
             else
             {
-                Sql = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] Desc) AS RowNumber,[Index],Patient,[Analysis Number] FROM[Klingen_test].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 + "'";
+                Sql = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] Desc) AS RowNumber,[Index],Patient,[Analysis Number] FROM[Klingen_test].[dbo].[Analysis Answer] WHERE AnswerDate > " + theDate1 + " AND Answer is Not null";
 
             }
             Datacontainer.command = new SqlCommand(Sql, Datacontainer.cnn);
@@ -76,10 +76,36 @@ namespace Unlock
             SqlDataReader reader = Datacontainer.command.ExecuteReader();
             int radnummer;
             radnummer = 4;
+            ListViewItem item;
+            this.listView1.Columns.Add("Key", 50, HorizontalAlignment.Left);
+            this.listView1.Columns.Add("Co1 1", 100, HorizontalAlignment.Left);
+            this.listView1.Columns.Add("Col 2", 100, HorizontalAlignment.Left);
+
             while (reader.Read())
             {
 
                 Datacontainer.Index = (int)reader.GetValue(1);
+                String dummy;
+                dummy = reader.GetValue(1).ToString();
+             //   listView1.Items.Add(dummy);
+
+
+
+                var listViewItem = new ListViewItem(dummy);
+                listView1.Items.Add(listViewItem);
+
+
+                //ListViewItem row1 = new ListViewItem();
+                //row1.Text = "Row 1";
+                //row1.SubItems.Add(dummy);
+                //row1.SubItems.Add("dummy");
+                //listView1.Items.Add(row1);
+
+
+                //   listView1.Items.Insert(radnummer-4,dummy);
+                // listView1.Items.Add(new ListViewItem(dummy));
+                // lvwAddItem(listView1, dummy);
+                //listView1.Items.Insert(0, "\n");
                 //Datacontainer.personnummer = (String)reader.GetValue(2);
                 ////Datacontainer.Familyname = (String)reader.GetValue(3);
                 //if (reader.GetValue(3) != DBNull.Value)
@@ -99,10 +125,13 @@ namespace Unlock
                 //    Datacontainer.fornamn = "";
                 //}
                 ////För nu över till excel!
-              
+
                 radnummer++;
 
             }
+
+
+
 
             reader.Close();
         }
