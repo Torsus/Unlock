@@ -63,12 +63,12 @@ namespace Unlock
             String Sql;
             if (Datacontainer.connectsource == "Data Source=Klingen-su-db,62468; Initial Catalog = Klingen;")
             {
-                Sql = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] Desc) AS RowNumber,[Index],Patient,[Analysis Number] FROM[Klingen].[dbo].[Analysis Answer] WHERE AnswerDate > theDate1";
+                Sql = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] Desc) AS RowNumber,[Index],Patient,[Analysis Number] FROM[Klingen].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 +"'";
 
             }
             else
             {
-                Sql = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] Desc) AS RowNumber,[Index],Patient,[Analysis Number] FROM[Klingen_test].[dbo].[Analysis Answer] WHERE AnswerDate > theDate1";
+                Sql = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] Desc) AS RowNumber,[Index],Patient,[Analysis Number] FROM[Klingen_test].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 + "'";
 
             }
             Datacontainer.command = new SqlCommand(Sql, Datacontainer.cnn);
