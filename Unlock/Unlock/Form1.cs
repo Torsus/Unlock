@@ -68,7 +68,7 @@ namespace Unlock
             }
             else
             {
-                Sql = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] Desc) AS RowNumber,[Index],Patient,[Analysis Number] FROM[Klingen].[dbo].[Analysis Answer] WHERE AnswerDate > theDate1";
+                Sql = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] Desc) AS RowNumber,[Index],Patient,[Analysis Number] FROM[Klingen_test].[dbo].[Analysis Answer] WHERE AnswerDate > theDate1";
 
             }
             Datacontainer.command = new SqlCommand(Sql, Datacontainer.cnn);
