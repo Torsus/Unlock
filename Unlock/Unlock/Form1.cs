@@ -78,8 +78,8 @@ namespace Unlock
             radnummer = 4;
             ListViewItem item;
             this.listView1.Columns.Add("Key", 50, HorizontalAlignment.Left);
-            this.listView1.Columns.Add("Co1 1", 100, HorizontalAlignment.Left);
-            this.listView1.Columns.Add("Col 2", 100, HorizontalAlignment.Left);
+            this.listView1.Columns.Add("Co1 1", 50, HorizontalAlignment.Left);
+            this.listView1.Columns.Add("Col 2", 50, HorizontalAlignment.Left);
 
             while (reader.Read())
             {
@@ -93,6 +93,7 @@ namespace Unlock
 
                 var listViewItem = new ListViewItem(dummy);
                 listView1.Items.Add(listViewItem);
+                //  listView1.Items.Insert(radnummer-4, listViewItem);
 
 
                 //ListViewItem row1 = new ListViewItem();
