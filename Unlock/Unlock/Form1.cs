@@ -16,7 +16,6 @@ namespace Unlock
         public Form1()
         {
             InitializeComponent();
-            InitializeComponent();
             Datacontainer.connectsource = "Data Source=Klingen-su-db,62468; Initial Catalog = Klingen;";
         }
 
@@ -45,6 +44,16 @@ namespace Unlock
                 // Do something
             }
 
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            Datacontainer.connectsource = "Data Source=Klingen-su-db,62468; Initial Catalog = Klingen;";
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            Datacontainer.connectsource = "Data Source=Klingen-test-su-db,62468; Initial Catalog = Klingen_Test;";
         }
     }
 }

@@ -65,6 +65,7 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Produktionsdatabas";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -76,6 +77,7 @@
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Testdatabas";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // label2
             // 
@@ -106,6 +108,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(522, 240);
             this.textBox2.Name = "textBox2";
+            this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 6;
             // 
