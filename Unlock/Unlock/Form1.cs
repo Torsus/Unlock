@@ -80,25 +80,25 @@ namespace Unlock
             {
 
                 Datacontainer.Index = (int)reader.GetValue(1);
-                Datacontainer.personnummer = (String)reader.GetValue(2);
-                //Datacontainer.Familyname = (String)reader.GetValue(3);
-                if (reader.GetValue(3) != DBNull.Value)
-                {
-                    Datacontainer.Familyname = (String)reader.GetValue(3);
-                }
-                else
-                {
-                    Datacontainer.Familyname = "";
-                }
-                if (reader.GetValue(4) != DBNull.Value)
-                {
-                    Datacontainer.fornamn = (String)reader.GetValue(4);
-                }
-                else
-                {
-                    Datacontainer.fornamn = "";
-                }
-                //För nu över till excel!
+                //Datacontainer.personnummer = (String)reader.GetValue(2);
+                ////Datacontainer.Familyname = (String)reader.GetValue(3);
+                //if (reader.GetValue(3) != DBNull.Value)
+                //{
+                //    Datacontainer.Familyname = (String)reader.GetValue(3);
+                //}
+                //else
+                //{
+                //    Datacontainer.Familyname = "";
+                //}
+                //if (reader.GetValue(4) != DBNull.Value)
+                //{
+                //    Datacontainer.fornamn = (String)reader.GetValue(4);
+                //}
+                //else
+                //{
+                //    Datacontainer.fornamn = "";
+                //}
+                ////För nu över till excel!
               
                 radnummer++;
 
