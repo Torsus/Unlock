@@ -20,5 +20,6 @@ namespace Unlock
         public static SqlCommand command, command2;
         public static int Index;
         public static int[] Indexarray = new int[1000000];
+        public static string SQLSearch;
     }
 }

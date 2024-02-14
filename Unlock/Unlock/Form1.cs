@@ -60,18 +60,18 @@ namespace Unlock
         {
             string theDate1 = dateTimePicker1.Value.ToString("yyyy-MM-dd");
             string theDate2 = dateTimePicker2.Value.ToString("yyyy-MM-dd");
-            String Sql;
+           // String Sql;
             if (Datacontainer.connectsource == "Data Source=Klingen-su-db,62468; Initial Catalog = Klingen;")
             {
-                Sql = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] ) AS RowNumber,[Index],Patient,[Analysis Number],AnswerDate FROM[Klingen].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 +"' AND Answer is not null";
+                Datacontainer.SQLSearch = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] ) AS RowNumber,[Index],Patient,[Analysis Number],AnswerDate FROM[Klingen].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 +"' AND Answer is not null";
 
             }
             else
             {
-                Sql = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] ) AS RowNumber,[Index],Patient,[Analysis Number],AnswerDate FROM[Klingen_test].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 + "' AND Answer is not null";
+                Datacontainer.SQLSearch = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] ) AS RowNumber,[Index],Patient,[Analysis Number],AnswerDate FROM[Klingen_test].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 + "' AND Answer is not null";
 
             }
-            Datacontainer.command = new SqlCommand(Sql, Datacontainer.cnn);
+            Datacontainer.command = new SqlCommand(Datacontainer.SQLSearch, Datacontainer.cnn);
             Datacontainer.command.CommandType = CommandType.Text;
             SqlDataReader reader = Datacontainer.command.ExecuteReader();
             int radnummer;
@@ -175,16 +175,32 @@ namespace Unlock
                     String SQL2;
                     if (Datacontainer.connectsource == "Data Source=Klingen-su-db,62468; Initial Catalog = Klingen;")
                     {
-                          SQL2 = "update table [Klingen].[dbo].[Analysis Answer] set Answer null where [Klingen].[dbo].Index = "+Datacontainer.Indexarray[i]+"";
+                          SQL2 = "update [Klingen].[dbo].[Analysis Answer] set Answer = null where [Index] = "+Datacontainer.Indexarray[i]+"";
                     }
                     else
                     {
-                        SQL2 = "update table [Klingen_test].[dbo].[Analysis Answer] set Answer null where [Klingen_test].[dbo].Index = "+Datacontainer.Indexarray[i]+"";
+                        SQL2 = "update [Klingen_test].[dbo].[Analysis Answer] set Answer = null where [Index] = "+Datacontainer.Indexarray[i]+"";
 
                     }
                     Datacontainer.command = new SqlCommand(SQL2, Datacontainer.cnn);
                     Datacontainer.command.CommandType = CommandType.Text;
                     SqlDataReader reader = Datacontainer.command.ExecuteReader();
+                    ///Kvittens
+                    string message = "Upplåsning på valda svar utfört!";
+                    string title = "";
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    DialogResult result = MessageBox.Show(message, title, buttons);
+                    if (result == DialogResult.OK)
+                    {
+                        button2.Enabled = true;
+                    }
+                    else
+                    {
+                        // Do something
+                    }
+                    ///Läs in in den uppdaterade listan
+                    checkedListBox1.Items.Clear();
+
                 }  
             }
         }
