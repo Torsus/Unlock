@@ -19,6 +19,6 @@ namespace Unlock
         public static SqlConnection cnn;
         public static SqlCommand command, command2;
         public static int Index;
-        public static int[] Indexarray;
+        public static int[] Indexarray = new int[1000000];
     }
 }

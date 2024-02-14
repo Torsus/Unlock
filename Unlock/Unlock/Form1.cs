@@ -175,13 +175,16 @@ namespace Unlock
                     String SQL2;
                     if (Datacontainer.connectsource == "Data Source=Klingen-su-db,62468; Initial Catalog = Klingen;")
                     {
-                          SQL2 = "update table [Klingen].[dbo].[Analysis Answer] set Answer null where [Klingen].[dbo].Index = Datacontainer.Indexarray[i]";
+                          SQL2 = "update table [Klingen].[dbo].[Analysis Answer] set Answer null where [Klingen].[dbo].Index = "+Datacontainer.Indexarray[i]+"";
                     }
                     else
                     {
-                        SQL2 = "update table [Klingen_test].[dbo].[Analysis Answer] set Answer null where [Klingen_test].[dbo].Index = Datacontainer.Indexarray[i]";
+                        SQL2 = "update table [Klingen_test].[dbo].[Analysis Answer] set Answer null where [Klingen_test].[dbo].Index = "+Datacontainer.Indexarray[i]+"";
 
                     }
+                    Datacontainer.command = new SqlCommand(SQL2, Datacontainer.cnn);
+                    Datacontainer.command.CommandType = CommandType.Text;
+                    SqlDataReader reader = Datacontainer.command.ExecuteReader();
                 }  
             }
         }
