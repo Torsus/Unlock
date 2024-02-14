@@ -126,7 +126,7 @@ namespace Unlock
                 //    Datacontainer.fornamn = "";
                 //}
                 ////För nu över till excel!
-
+                checkedListBox1.Items.Add(dummy);
                 radnummer++;
 
             }
@@ -135,6 +135,21 @@ namespace Unlock
 
 
             reader.Close();
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
