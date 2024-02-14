@@ -193,12 +193,13 @@
             // 
             // listView1
             // 
-            this.listView1.Location = new System.Drawing.Point(1327, 300);
+            this.listView1.Location = new System.Drawing.Point(1539, 300);
             this.listView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(365, 118);
+            this.listView1.Size = new System.Drawing.Size(153, 118);
             this.listView1.TabIndex = 14;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.Visible = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // button3
@@ -216,7 +217,7 @@
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Location = new System.Drawing.Point(897, 295);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(349, 123);
+            this.checkedListBox1.Size = new System.Drawing.Size(474, 123);
             this.checkedListBox1.TabIndex = 16;
             // 
             // Form1

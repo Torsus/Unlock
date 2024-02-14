@@ -85,13 +85,16 @@ namespace Unlock
             {
 
                 Datacontainer.Index = (int)reader.GetValue(1);
-                String dummy;
-                dummy = reader.GetValue(1).ToString();
+                String varde1;
+                String varde2;
+                String concat;
+                varde1 = reader.GetValue(1).ToString();
+                varde2 = reader.GetValue(2).ToString();
              //   listView1.Items.Add(dummy);
 
 
 
-                var listViewItem = new ListViewItem(dummy);
+                var listViewItem = new ListViewItem(varde1);
                 listView1.Items.Add(listViewItem);
                 //  listView1.Items.Insert(radnummer-4, listViewItem);
 
@@ -126,7 +129,8 @@ namespace Unlock
                 //    Datacontainer.fornamn = "";
                 //}
                 ////För nu över till excel!
-                checkedListBox1.Items.Add(dummy);
+                concat = varde1 + " " + varde2;
+                checkedListBox1.Items.Add(concat);
                 radnummer++;
 
             }
