@@ -63,17 +63,17 @@ namespace Unlock
            // String Sql;
             if (Datacontainer.connectsource == "Data Source=Klingen-su-db,62468; Initial Catalog = Klingen;")
             {
-                Datacontainer.SQLSearch = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] ) AS RowNumber,[Index],Patient,[Analysis Number],AnswerDate FROM[Klingen].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 +"' AND Answer is not null";
+                Datacontainer.SQLSearch = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] ) AS RowNumber,[Index],Patient,[Analysis Number],AnswerDate FROM[Klingen].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 +"'AND Answerdate < '" + theDate2 +"' AND Answer is not null";
 
             }
             else
             {
-                Datacontainer.SQLSearch = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] ) AS RowNumber,[Index],Patient,[Analysis Number],AnswerDate FROM[Klingen_test].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 + "' AND Answer is not null";
+                Datacontainer.SQLSearch = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] ) AS RowNumber,[Index],Patient,[Analysis Number],AnswerDate FROM[Klingen_test].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 + "'AND Answerdate < '" + theDate2 + "' AND Answer is not null";
 
             }
             Datacontainer.command = new SqlCommand(Datacontainer.SQLSearch, Datacontainer.cnn);
             Datacontainer.command.CommandType = CommandType.Text;
-            SqlDataReader reader = Datacontainer.command.ExecuteReader();
+            Datacontainer.reader = Datacontainer.command.ExecuteReader();
             int radnummer;
             radnummer = 4;
             ListViewItem item;
@@ -83,60 +83,28 @@ namespace Unlock
             checkedListBox1.Items.Clear();
             int indexvarde;
             indexvarde = 0;
-            while (reader.Read())
+            while (Datacontainer.reader.Read())
             {
 
-                Datacontainer.Index = (int)reader.GetValue(1);
-                Datacontainer.Indexarray[indexvarde] = (int)reader.GetValue(1);
+                Datacontainer.Index = (int)Datacontainer.reader.GetValue(1);
+                Datacontainer.Indexarray[indexvarde] = (int)Datacontainer.reader.GetValue(1);
                 indexvarde++;
                 String varde1;
                 String varde2;
                 String varde3;
                 String varde4;
                 String concat;
-                varde1 = reader.GetValue(1).ToString();
-                varde2 = reader.GetValue(2).ToString();
-                varde3 = reader.GetValue(3).ToString();
-                varde4 = reader.GetValue(4).ToString();
+                varde1 = Datacontainer.reader.GetValue(1).ToString();
+                varde2 = Datacontainer.reader.GetValue(2).ToString();
+                varde3 = Datacontainer.reader.GetValue(3).ToString();
+                varde4 = Datacontainer.reader.GetValue(4).ToString();
              //   listView1.Items.Add(dummy);
 
 
 
                 var listViewItem = new ListViewItem(varde1);
                 listView1.Items.Add(listViewItem);
-                //  listView1.Items.Insert(radnummer-4, listViewItem);
-
-
-                //ListViewItem row1 = new ListViewItem();
-                //row1.Text = "Row 1";
-                //row1.SubItems.Add(dummy);
-                //row1.SubItems.Add("dummy");
-                //listView1.Items.Add(row1);
-
-
-                //   listView1.Items.Insert(radnummer-4,dummy);
-                // listView1.Items.Add(new ListViewItem(dummy));
-                // lvwAddItem(listView1, dummy);
-                //listView1.Items.Insert(0, "\n");
-                //Datacontainer.personnummer = (String)reader.GetValue(2);
-                ////Datacontainer.Familyname = (String)reader.GetValue(3);
-                //if (reader.GetValue(3) != DBNull.Value)
-                //{
-                //    Datacontainer.Familyname = (String)reader.GetValue(3);
-                //}
-                //else
-                //{
-                //    Datacontainer.Familyname = "";
-                //}
-                //if (reader.GetValue(4) != DBNull.Value)
-                //{
-                //    Datacontainer.fornamn = (String)reader.GetValue(4);
-                //}
-                //else
-                //{
-                //    Datacontainer.fornamn = "";
-                //}
-                ////För nu över till excel!
+               
                 concat = varde1 + " " + varde2 + " " + varde3 + " " + varde4;
                 checkedListBox1.Items.Add(concat);
                 radnummer++;
@@ -146,7 +114,7 @@ namespace Unlock
 
 
 
-            reader.Close();
+            Datacontainer.reader.Close();
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -168,7 +136,8 @@ namespace Unlock
         {
             int antal;
             antal = checkedListBox1.Items.Count;
-            for(int i = 0; i < antal; i++)
+            //SqlDataReader reader;
+            for (int i = 0; i < antal; i++)
             {
                 if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
                 {
@@ -184,25 +153,74 @@ namespace Unlock
                     }
                     Datacontainer.command = new SqlCommand(SQL2, Datacontainer.cnn);
                     Datacontainer.command.CommandType = CommandType.Text;
-                    SqlDataReader reader = Datacontainer.command.ExecuteReader();
-                    ///Kvittens
-                    string message = "Upplåsning på valda svar utfört!";
-                    string title = "";
-                    MessageBoxButtons buttons = MessageBoxButtons.OK;
-                    DialogResult result = MessageBox.Show(message, title, buttons);
-                    if (result == DialogResult.OK)
-                    {
-                        button2.Enabled = true;
-                    }
-                    else
-                    {
-                        // Do something
-                    }
-                    ///Läs in in den uppdaterade listan
-                    checkedListBox1.Items.Clear();
-
-                }  
+                    Datacontainer.reader = Datacontainer.command.ExecuteReader();
+                   
+                }
+                Datacontainer.reader.Close();
             }
+
+            ///Kvittens
+          //  Datacontainer.reader.Close();
+            string message = "Upplåsning på valda svar utfört!";
+            string title = "";
+            MessageBoxButtons buttons = MessageBoxButtons.OK;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            if (result == DialogResult.OK)
+            {
+                button2.Enabled = true;
+            }
+            else
+            {
+                // Do something
+            }
+            ///Läs in in den uppdaterade listan
+            checkedListBox1.Items.Clear();
+            Datacontainer.command = new SqlCommand(Datacontainer.SQLSearch, Datacontainer.cnn);
+            Datacontainer.command.CommandType = CommandType.Text;
+            Datacontainer.reader2 = Datacontainer.command.ExecuteReader();
+            ///Inläst igen, lägg nu in det i tabellen igen
+            /// 
+            int indexvarde;
+            indexvarde = 0;
+            while (Datacontainer.reader2.Read())
+            {
+
+                Datacontainer.Index = (int)Datacontainer.reader2.GetValue(1);
+                Datacontainer.Indexarray[indexvarde] = (int)Datacontainer.reader2.GetValue(1);
+                indexvarde++;
+                String varde1;
+                String varde2;
+                String varde3;
+                String varde4;
+                String concat;
+                varde1 = Datacontainer.reader2.GetValue(1).ToString();
+                varde2 = Datacontainer.reader2.GetValue(2).ToString();
+                varde3 = Datacontainer.reader2.GetValue(3).ToString();
+                varde4 = Datacontainer.reader2.GetValue(4).ToString();
+                //   listView1.Items.Add(dummy);
+
+
+
+                //   var listViewItem = new ListViewItem(varde1);
+                //  listView1.Items.Add(listViewItem);
+
+                concat = varde1 + " " + varde2 + " " + varde3 + " " + varde4;
+                checkedListBox1.Items.Add(concat);
+                // radnummer++;
+
+            }
+            Datacontainer.reader2.Close();
+           
+           
+           
+
+            //}
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

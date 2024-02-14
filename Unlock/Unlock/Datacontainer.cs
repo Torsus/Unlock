@@ -21,5 +21,6 @@ namespace Unlock
         public static int Index;
         public static int[] Indexarray = new int[1000000];
         public static string SQLSearch;
+        public static SqlDataReader reader,reader2;
     }
 }

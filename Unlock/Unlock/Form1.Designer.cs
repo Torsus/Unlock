@@ -165,7 +165,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1345, 150);
+            this.label6.Location = new System.Drawing.Point(1278, 150);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(26, 17);
@@ -174,7 +174,7 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(1327, 220);
+            this.dateTimePicker2.Location = new System.Drawing.Point(1281, 209);
             this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(265, 22);
@@ -205,13 +205,14 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1348, 542);
+            this.button3.Location = new System.Drawing.Point(897, 533);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(161, 28);
             this.button3.TabIndex = 15;
-            this.button3.Text = "Lås upp för valda";
+            this.button3.Text = "EXIT";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // checkedListBox1
             // 
