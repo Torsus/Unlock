@@ -63,12 +63,12 @@ namespace Unlock
             String Sql;
             if (Datacontainer.connectsource == "Data Source=Klingen-su-db,62468; Initial Catalog = Klingen;")
             {
-                Sql = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] Desc) AS RowNumber,[Index],Patient,[Analysis Number] FROM[Klingen].[dbo].[Analysis Answer] WHERE AnswerDate > " + theDate1 +" AND Answer is Not null";
+                Sql = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] ) AS RowNumber,[Index],Patient,[Analysis Number],AnswerDate FROM[Klingen].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 +"' AND Answer is not null";
 
             }
             else
             {
-                Sql = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] Desc) AS RowNumber,[Index],Patient,[Analysis Number] FROM[Klingen_test].[dbo].[Analysis Answer] WHERE AnswerDate > " + theDate1 + " AND Answer is Not null";
+                Sql = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] ) AS RowNumber,[Index],Patient,[Analysis Number],AnswerDate FROM[Klingen_test].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 + "' AND Answer is not null";
 
             }
             Datacontainer.command = new SqlCommand(Sql, Datacontainer.cnn);
@@ -80,16 +80,24 @@ namespace Unlock
             this.listView1.Columns.Add("Key", 50, HorizontalAlignment.Left);
             this.listView1.Columns.Add("Co1 1", 50, HorizontalAlignment.Left);
             this.listView1.Columns.Add("Col 2", 50, HorizontalAlignment.Left);
-
+            checkedListBox1.Items.Clear();
+            int indexvarde;
+            indexvarde = 0;
             while (reader.Read())
             {
 
                 Datacontainer.Index = (int)reader.GetValue(1);
+                Datacontainer.Indexarray[indexvarde] = (int)reader.GetValue(1);
+                indexvarde++;
                 String varde1;
                 String varde2;
+                String varde3;
+                String varde4;
                 String concat;
                 varde1 = reader.GetValue(1).ToString();
                 varde2 = reader.GetValue(2).ToString();
+                varde3 = reader.GetValue(3).ToString();
+                varde4 = reader.GetValue(4).ToString();
              //   listView1.Items.Add(dummy);
 
 
@@ -129,7 +137,7 @@ namespace Unlock
                 //    Datacontainer.fornamn = "";
                 //}
                 ////För nu över till excel!
-                concat = varde1 + " " + varde2;
+                concat = varde1 + " " + varde2 + " " + varde3 + " " + varde4;
                 checkedListBox1.Items.Add(concat);
                 radnummer++;
 
@@ -154,6 +162,28 @@ namespace Unlock
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int antal;
+            antal = checkedListBox1.Items.Count;
+            for(int i = 0; i < antal; i++)
+            {
+                if (checkedListBox1.GetItemCheckState(i) == CheckState.Checked)
+                {
+                    String SQL2;
+                    if (Datacontainer.connectsource == "Data Source=Klingen-su-db,62468; Initial Catalog = Klingen;")
+                    {
+                          SQL2 = "update table [Klingen].[dbo].[Analysis Answer] set Answer null where [Klingen].[dbo].Index = Datacontainer.Indexarray[i]";
+                    }
+                    else
+                    {
+                        SQL2 = "update table [Klingen_test].[dbo].[Analysis Answer] set Answer null where [Klingen_test].[dbo].Index = Datacontainer.Indexarray[i]";
+
+                    }
+                }  
+            }
         }
     }
 }
