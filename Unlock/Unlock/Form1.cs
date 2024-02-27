@@ -63,12 +63,12 @@ namespace Unlock
            // String Sql;
             if (Datacontainer.connectsource == "Data Source=Klingen-su-db,62468; Initial Catalog = Klingen;")
             {
-                Datacontainer.SQLSearch = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] ) AS RowNumber,[Index],Patient,[Analysis Number],AnswerDate FROM[Klingen].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 +"'AND Answerdate < '" + theDate2 +"' AND Answer is not null";
+                Datacontainer.SQLSearch = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] ) AS RowNumber,[Index],Patient,[Analysis Number],AnswerDate FROM[Klingen].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 +"'AND Answerdate < '" + theDate2 +"' AND Comments is not null";
 
             }
             else
             {
-                Datacontainer.SQLSearch = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] ) AS RowNumber,[Index],Patient,[Analysis Number],AnswerDate FROM[Klingen_test].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 + "'AND Answerdate < '" + theDate2 + "' AND Answer is not null";
+                Datacontainer.SQLSearch = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] ) AS RowNumber,[Index],Patient,[Analysis Number],AnswerDate FROM[Klingen_test].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 + "'AND Answerdate < '" + theDate2 + "' AND Comments is not null";
 
             }
             Datacontainer.command = new SqlCommand(Datacontainer.SQLSearch, Datacontainer.cnn);
@@ -144,11 +144,11 @@ namespace Unlock
                     String SQL2;
                     if (Datacontainer.connectsource == "Data Source=Klingen-su-db,62468; Initial Catalog = Klingen;")
                     {
-                          SQL2 = "update [Klingen].[dbo].[Analysis Answer] set Answer = null where [Index] = "+Datacontainer.Indexarray[i]+"";
+                          SQL2 = "update [Klingen].[dbo].[Analysis Answer] set Comments = null where [Index] = "+Datacontainer.Indexarray[i]+"";
                     }
                     else
                     {
-                        SQL2 = "update [Klingen_test].[dbo].[Analysis Answer] set Answer = null where [Index] = "+Datacontainer.Indexarray[i]+"";
+                        SQL2 = "update [Klingen_test].[dbo].[Analysis Answer] set Comments = null where [Index] = "+Datacontainer.Indexarray[i]+"";
 
                     }
                     Datacontainer.command = new SqlCommand(SQL2, Datacontainer.cnn);
