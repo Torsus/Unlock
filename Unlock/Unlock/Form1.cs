@@ -194,11 +194,13 @@ namespace Unlock
                 String varde2;
                 String varde3;
                 String varde4;
+                String varde5;
                 String concat;
                 varde1 = Datacontainer.reader2.GetValue(1).ToString();
                 varde2 = Datacontainer.reader2.GetValue(2).ToString();
                 varde3 = Datacontainer.reader2.GetValue(3).ToString();
                 varde4 = Datacontainer.reader2.GetValue(4).ToString();
+                varde5 = Datacontainer.reader2.GetValue(5).ToString();
                 //   listView1.Items.Add(dummy);
 
 
@@ -206,7 +208,7 @@ namespace Unlock
                 //   var listViewItem = new ListViewItem(varde1);
                 //  listView1.Items.Add(listViewItem);
 
-                concat = varde1 + " " + varde2 + " " + varde3 + " " + varde4;
+                concat = varde1 + " " + varde2 + " " + varde3 + " " + varde4 + " " + varde5;
                 checkedListBox1.Items.Add(concat);
                 // radnummer++;
 
