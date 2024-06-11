@@ -63,12 +63,12 @@ namespace Unlock
            // String Sql;
             if (Datacontainer.connectsource == "Data Source=Klingen-su-db,62468; Initial Catalog = Klingen;")
             {
-                Datacontainer.SQLSearch = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] ) AS RowNumber,[Index],Patient,[Analysis Number],AnswerDate FROM[Klingen].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 +"'AND Answerdate < '" + theDate2 +"' AND Comments is not null";
+                Datacontainer.SQLSearch = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] ) AS RowNumber,[Index],Patient,[Analysis Number],AnswerDate,Comments FROM[Klingen].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 +"'AND Answerdate < '" + theDate2 +"' AND Comments is not null";
 
             }
             else
             {
-                Datacontainer.SQLSearch = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] ) AS RowNumber,[Index],Patient,[Analysis Number],AnswerDate FROM[Klingen_test].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 + "'AND Answerdate < '" + theDate2 + "' AND Comments is not null";
+                Datacontainer.SQLSearch = "SELECT ROW_NUMBER() OVER(ORDER BY[Index] ) AS RowNumber,[Index],Patient,[Analysis Number],AnswerDate,Comments FROM[Klingen_test].[dbo].[Analysis Answer] WHERE AnswerDate > '" + theDate1 + "'AND Answerdate < '" + theDate2 + "' AND Comments is not null";
 
             }
             Datacontainer.command = new SqlCommand(Datacontainer.SQLSearch, Datacontainer.cnn);
@@ -93,19 +93,21 @@ namespace Unlock
                 String varde2;
                 String varde3;
                 String varde4;
+                String varde5;
                 String concat;
                 varde1 = Datacontainer.reader.GetValue(1).ToString();
                 varde2 = Datacontainer.reader.GetValue(2).ToString();
                 varde3 = Datacontainer.reader.GetValue(3).ToString();
                 varde4 = Datacontainer.reader.GetValue(4).ToString();
-             //   listView1.Items.Add(dummy);
+                varde5 = Datacontainer.reader.GetValue(5).ToString();
+                //   listView1.Items.Add(dummy);
 
 
 
                 var listViewItem = new ListViewItem(varde1);
                 listView1.Items.Add(listViewItem);
                
-                concat = varde1 + " " + varde2 + " " + varde3 + " " + varde4;
+                concat = varde1 + " " + varde2 + " " + varde3 + " " + varde4 + "" + varde5;
                 checkedListBox1.Items.Add(concat);
                 radnummer++;
 
