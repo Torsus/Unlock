@@ -185,9 +185,9 @@
             // 
             // listView1
             // 
-            this.listView1.Location = new System.Drawing.Point(1154, 244);
+            this.listView1.Location = new System.Drawing.Point(1294, 240);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(116, 97);
+            this.listView1.Size = new System.Drawing.Size(24, 97);
             this.listView1.TabIndex = 14;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.Visible = false;
@@ -206,10 +206,10 @@
             // checkedListBox1
             // 
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(673, 240);
+            this.checkedListBox1.Location = new System.Drawing.Point(609, 240);
             this.checkedListBox1.Margin = new System.Windows.Forms.Padding(2);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(356, 94);
+            this.checkedListBox1.Size = new System.Drawing.Size(670, 94);
             this.checkedListBox1.TabIndex = 16;
             // 
             // button4
@@ -226,7 +226,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(690, 225);
+            this.label7.Location = new System.Drawing.Point(606, 225);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(36, 13);
             this.label7.TabIndex = 18;
@@ -235,7 +235,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(725, 225);
+            this.label8.Location = new System.Drawing.Point(660, 225);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(40, 13);
             this.label8.TabIndex = 19;
@@ -244,7 +244,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(758, 225);
+            this.label9.Location = new System.Drawing.Point(701, 225);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(33, 13);
             this.label9.TabIndex = 20;
@@ -253,7 +253,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(794, 225);
+            this.label10.Location = new System.Drawing.Point(740, 225);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(38, 13);
             this.label10.TabIndex = 21;
@@ -262,11 +262,12 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(839, 225);
+            this.label11.Location = new System.Drawing.Point(795, 225);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(41, 13);
             this.label11.TabIndex = 22;
             this.label11.Text = "Låsinfo";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // Form1
             // 
